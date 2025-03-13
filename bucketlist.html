@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bucket List</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: lightblue;
+        }
+        .container {
+            width: 700px;;
+            height: 500px;
+            
+            margin: 60px auto;
+            background-color: rgb(158, 188, 25);
+            padding: 50px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            
+        }
+        h1 {
+            text-align: center;
+        }
+        ul {
+            list-style-type:none;
+            padding: 0;
+        }
+        li {
+            padding: 10px;
+            background-color: #f1f1f1;
+            margin-bottom: 5px;
+            border-radius: 5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        button {
+            background-color: red;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        button:hover {
+            background-color: darkred;
+        }
+        input[type="text"] {
+            padding: 10px;
+            width: 80%;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        .add-button {
+            background-color: green;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            width: 100%;
+            font-size: 16px;
+        }
+        .add-button:hover {
+            background-color: darkgreen;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>My Bucket List</h1>
+    <input type="text" id="bucketItem" placeholder="Enter a new item" />
+    <button class="add-button" onclick="addItem()">Add to Bucket List</button>
+    <ul id="bucketList">
+        <!-- List of bucket list items will appear here -->
+    </ul>
+</div>
+
+<script>
+    function addItem() {
+        const itemInput = document.getElementById('bucketItem');
+        const itemText = itemInput.value.trim();
+
+        if (itemText !== "") {
+            // Create a new list item
+            const li = document.createElement('li');
+            li.textContent = itemText;
+
+            // Create a delete button
+            const deleteButton = document.createElement('button');
+            deleteButton.textContent = 'Delete';
+            deleteButton.onclick = function () {
+                li.remove();
+            };
+
+            // Append the delete button to the list item
+            li.appendChild(deleteButton);
+
+            // Add the new list item to the bucket list
+            document.getElementById('bucketList').appendChild(li);
+
+            // Clear the input field
+            itemInput.value = '';
+        } else {
+            alert("Please enter a valid item.");
+        }
+    }
+</script>
+
+</body>
+</html>
